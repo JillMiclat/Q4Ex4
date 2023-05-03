@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+    
+	<title>Q4 Exercise 4 | Temperature Converter</title>
+	<style type="text/css">
+
+body{
+	background-image: url(chalkboardbg.png);
+	background-size: cover;
+	font-family: 'Margarine', cursive;
+	color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+h1{
+   font-size: 45px;
+}
+h2{
+   font-size: 30px;
+}
+
+#celsius, #fahrenheit, #kelvin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+input{
+    flex: 5;
+    height: 60px;
+    font-family: 'Margarine', cursive;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-radius: 8px 8px 8px 8px;
+    padding: 0 10px;
+}
+	</style>
+</head>
+<body>
+<div class="container">
+
+        <div class="title">
+            <h1>Temperature Converter</h1>
+        </div>
+        <div id="celsius">
+            <h2>°C</h2>&nbsp;&nbsp;<input type="number" name="" placeholder="Celsius">
+        </div>
+        <div id="fahrenheit">
+            <h2>°F</h2>&nbsp;&nbsp;<input type="number" name="" placeholder="Fahrenheit">
+        </div>
+        <div id="kelvin">
+            <h2>°K</h2>&nbsp;&nbsp;<input type="number" name="" placeholder="Kelvin">
+        </div>
+    </div>
+ <script type="text/javascript">
+let celsiusInput = document.querySelector('#celsius > input')
+let fahrenheitInput = document.querySelector('#fahrenheit > input')
+let kelvinInput = document.querySelector('#kelvin > input')
+
+let btn = document.querySelector('.button button')
+
+
+function roundNumber(number){
+    return Math.round(number*100)/100
+}
+
+
+/* Celcius to Fahrenheit and Kelvin */
+celsiusInput.addEventListener('input', function(){
+    let cTemp = parseFloat(celsiusInput.value)
+    let fTemp = (cTemp*(9/5)) + 32
+    let kTemp = cTemp + 273.15
+
+    fahrenheitInput.value = roundNumber(fTemp)
+    kelvinInput.value = roundNumber(kTemp)
+})
+
+
+/* Fahrenheit to Celcius and Kelvin */
+fahrenheitInput.addEventListener('input', function(){
+    let fTemp = parseFloat(fahrenheitInput.value)
+    let cTemp = (fTemp - 32) * (5/9)
+    let kTemp = (fTemp -32) * (5/9) + 273.15
+
+    celsiusInput.value = roundNumber(cTemp)
+    kelvinInput.value = roundNumber(kTemp)
+})
+
+/* Kelvin to Celcius and Fahrenheit */
+kelvinInput.addEventListener('input', function(){
+    let kTemp = parseFloat(kelvinInput.value)
+    let cTemp = kTemp - 273.15
+    let fTemp = (kTemp - 273.15) * (9/5) + 32
+
+    celsiusInput.value = roundNumber(cTemp)
+    fahrenheitInput.value = roundNumber(fTemp)
+})
+
+
+btn.addEventListener('click', ()=>{
+    celsiusInput.value = ""
+    fahrenheitInput.value = ""
+    kelvinInput.value = ""
+})
+ </script>
+</body>
+</html>
